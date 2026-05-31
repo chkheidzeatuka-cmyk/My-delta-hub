@@ -1,42 +1,29 @@
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/SiriusXFiles/Rayfield/main/source'))()
 
--- Creates the Main Window
-local Window = OrionLib:MakeWindow({
-    Name = "My Delta Hub ⚡", 
-    HidePremium = true, 
-    SaveConfig = false, 
-    IntroText = "Loading Hub..."
+local Window = Rayfield:CreateWindow({
+   Name = "My Delta Hub ⚡",
+   LoadingTitle = "Delta Hub Loading...",
+   LoadingSubtitle = "by chkheidzeatuka",
+   ConfigurationSaving = {
+      Enabled = false
+   },
+   Discord = {
+      Enabled = false
+   }
 })
 
--- Tab 1: Player Mods
-local PlayerTab = Window:MakeTab({
-    Name = "Player Mods",
-    Icon = "rbxassetid://4483345998",
-    PremiumOnly = false
+local PlayerTab = Window:CreateTab("Player Mods", nil)
+
+PlayerTab:CreateButton({
+   Name = "Speed Hack (Fast)",
+   Callback = function()
+       game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 50
+   end,
 })
 
-PlayerTab:AddButton({
-    Name = "Speed Hack (Fast)",
-    Callback = function()
-        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 50
-    end    
+PlayerTab:CreateButton({
+   Name = "Super Jump",
+   Callback = function()
+       game.Players.LocalPlayer.Character.Humanoid.JumpPower = 120
+   end,
 })
-
-PlayerTab:AddButton({
-    Name = "Super Jump",
-    Callback = function()
-        game.Players.LocalPlayer.Character.Humanoid.JumpPower = 120
-    end    
-})
-
--- Tab 2: Credits
-local CreditsTab = Window:MakeTab({
-    Name = "Credits",
-    Icon = "rbxassetid://4483345998",
-    PremiumOnly = false
-})
-
-CreditsTab:AddLabel("Hub Created by chkheidzeatuka")
-
--- Initializes the UI
-OrionLib:Init()
